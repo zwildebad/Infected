@@ -2,7 +2,7 @@ function initGame(){
     var config = {
         type: Phaser.AUTO,
         width: window.innerWidth * .98,
-        height: window.innerHeight * .98,
+        height: window.innerHeight * .97,
         scene: {
             preload: preload,
             create: create
