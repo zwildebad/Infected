@@ -1,3 +1,6 @@
+import threading
+
+
 class User:  # this is the healthy player class
     username = ""
     health = 100
@@ -31,9 +34,19 @@ class Infected:  # this is the infected player class
 class Game:  # this is a game class
     player_count = 0  # number players in the game overall
     infected_players = 1
-    healthy_players = player_count - 1
+    healthy_players = player_count - infected_players
     game_over = False  # true when winner is established
     infected_win = False
     players_win = False
+    game_start = False
     time = 180  # length of game/match
     allow_join = 120  # time before game starts after first player joins
+
+    def start_game(self):
+        self.game_start = True
+
+    def start_timer(self):
+        self.allow_join -= 1
+
+    def game_timer(self):
+        self.time -= 1
