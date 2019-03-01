@@ -1,5 +1,3 @@
-from backend import gameClasses
-
 # should these be methods?? The world may never know....
 # time limit for players to join before game starts
 
@@ -7,7 +5,7 @@ from backend import gameClasses
 def login(game):
     if game.player_count >= 50:
         return False
-    else:
+    elif game.player_count < 50 and not game.game_start:
         game.player_count += 1
         return True
         # connect to server

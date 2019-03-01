@@ -1,6 +1,5 @@
 import unittest
-from backend import main
-from backend import gameClasses
+from server.infected_mmo.backend import gameClasses, main
 
 
 class TestMain(unittest.TestCase):

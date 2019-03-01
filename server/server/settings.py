@@ -55,7 +55,8 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['home/server/infected_mmo/templates'
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
