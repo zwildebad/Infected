@@ -1,21 +1,21 @@
 import unittest
-from server.infected_mmo.backend import gameClasses, main
+from backend import main, gameClasses
 
 
 class TestMain(unittest.TestCase):
     def test_login(self):  # testing the login function in main
         game = gameClasses.Game()  # new game instance
         game.player_count = 49
-        self.assertTrue(main.login(game))
+        self.assertTrue(main.game_login(game))
         self.assertEqual(game.player_count, 50)
-        self.assertFalse(main.login(game))
+        self.assertFalse(main.game_login(game))
 
     def test_logout(self):  # testing the logout function in main
         game = gameClasses.Game()
         game.player_count = 1
-        self.assertTrue(main.logout(game))
+        self.assertTrue(main.game_logout(game))
         self.assertEqual(game.player_count, 0)
-        self.assertFalse(main.logout(game))
+        self.assertFalse(main.game_logout(game))
 
     def test_winner(self):  # testing the winner function in main
         game = gameClasses.Game()

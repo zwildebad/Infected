@@ -2,7 +2,7 @@
 # time limit for players to join before game starts
 
 
-def login(game):
+def game_login(game):
     if game.player_count >= 50:
         return False
     elif game.player_count < 50 and not game.game_start:
@@ -11,7 +11,7 @@ def login(game):
         # connect to server
 
 
-def logout(game):
+def game_logout(game):
     if game.player_count == 0:
         return False
     else:

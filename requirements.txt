@@ -1,2 +1,4 @@
 django
 requests
+sqlite3
+flask
