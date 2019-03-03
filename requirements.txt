@@ -2,3 +2,4 @@ django
 requests
 sqlite3
 flask
+MySQL-python
