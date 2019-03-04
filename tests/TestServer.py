@@ -4,6 +4,8 @@ import unittest
 
 
 class TestServer(unittest.TestCase):
+    # each test tests a different path on the server and ensures that the connection was successful,
+    # as indicated by the 200 status code
     def test_main_menu(self):
         r = requests.get('http://127.0.0.1:5000/')
         self.assertEqual(r.status_code, 200)
