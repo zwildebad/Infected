@@ -20,6 +20,7 @@ def login():
             game = games[i]
             if game_login(game):
                 # create new player, add to database, username and password??
+                # USE FILES FROM BACKEND :D
                 return render_template('game.html')
     else:
         new_game = Game()
