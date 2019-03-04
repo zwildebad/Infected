@@ -1,30 +1,30 @@
 import unittest
-from backend import main, gameClasses
+from backend.main import *
+from backend.gameClasses import *
 
 
 class TestMain(unittest.TestCase):
     def test_login(self):  # testing the login function in main
-        game = gameClasses.Game()  # new game instance
-        game.player_count = 49
-        self.assertTrue(main.game_login(game))
-        self.assertEqual(game.player_count, 50)
-        self.assertFalse(main.game_login(game))
+        game = Game()  # new game instance
+        self.assertTrue(game_login(game))
+        self.assertEqual(game.player_count, 1)
+        self.assertFalse(game_login(game))
 
     def test_logout(self):  # testing the logout function in main
-        game = gameClasses.Game()
-        game.player_count = 1
-        self.assertTrue(main.game_logout(game))
+        game = Game()
+        game.players["user0"] = User()
+        self.assertTrue(game_logout(game, "user0"))
         self.assertEqual(game.player_count, 0)
-        self.assertFalse(main.game_logout(game))
+        self.assertFalse(game_logout(game, "user0"))
 
     def test_winner(self):  # testing the winner function in main
-        game = gameClasses.Game()
+        game = Game()
         game.healthy_players = 0
-        main.is_winner(game)
+        is_winner(game)
         self.assertTrue(game.infected_win)
         game.healthy_players = 24
         game.time = 0
-        main.is_winner(game)
+        is_winner(game)
         self.assertTrue(game.players_win)
 
 
