@@ -5,23 +5,22 @@ from backend.gameClasses import *
 
 
 def game_login(game):  # logs player into game with id from database, adds player to player list
-    if game.player_count >= 50:
+    if game.get_players() >= 50:
         return False
-    elif game.player_count < 50 and not game.game_start:
-        player_dict = game.players
-        new_user_name = "user" + str(next_id())
-        new_user_object = User()
-        new_user_object.game_id = game.game_id
-        player_dict[new_user_name] = new_user_object
+    elif game.get_players() < 50 and not game.game_start:  # TODO add user to database upon calling function
+        new_user_name = str(next_id())  # name of new user, which is just the next available id number
+        new_user_object = User()  # new User object for the new user
+        add_to_database()
+        game.add_player(new_user_name, new_user_object)
         return True
-        # connect to server
+        # connect to server?
 
 
 def game_logout(game, player_id):  # deletes player from game list
-    if game.player_count == 0:
+    if game.get_players() == 0:
         return False
     else:
-        del game.players[player_id]
+        game.remove_player(player_id)  # delete player from games player dictionary
         return True
         # disconnect from server
 

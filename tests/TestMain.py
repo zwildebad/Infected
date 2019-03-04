@@ -1,31 +1,30 @@
 import unittest
 from backend.main import *
 from backend.gameClasses import *
+from backend.databaseProcess import *
 
 
 class TestMain(unittest.TestCase):
+    game = Game()
+
     def test_login(self):  # testing the login function in main
-        game = Game()  # new game instance
-        self.assertTrue(game_login(game))
-        self.assertEqual(game.player_count, 1)
-        self.assertFalse(game_login(game))
+        self.assertTrue(game_login(self.game))
+        self.assertEqual(self.game.get_players(), 1)
+        self.assertEqual(next_id(), 8)
 
     def test_logout(self):  # testing the logout function in main
-        game = Game()
-        game.players["user0"] = User()
-        self.assertTrue(game_logout(game, "user0"))
-        self.assertEqual(game.player_count, 0)
-        self.assertFalse(game_logout(game, "user0"))
+        self.assertTrue(game_logout(self.game, "6"))
+        self.assertEqual(self.game.get_players(), 0)
+        self.assertFalse(game_logout(self.game, "6"))
 
     def test_winner(self):  # testing the winner function in main
-        game = Game()
-        game.healthy_players = 0
-        is_winner(game)
-        self.assertTrue(game.infected_win)
-        game.healthy_players = 24
-        game.time = 0
-        is_winner(game)
-        self.assertTrue(game.players_win)
+        self.game.healthy_players = 0
+        is_winner(self.game)
+        self.assertTrue(self.game.infected_win)
+        self.game.healthy_players = 24
+        self.game.time = 0
+        is_winner(self.game)
+        self.assertTrue(self.game.players_win)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,3 @@
-import threading
-
-
 class User:  # this is the healthy player class
     username = ""
     health = 100
@@ -35,7 +32,6 @@ class Infected:  # this is the infected player class
 
 class Game:  # this is a game class
     players = {}
-    player_count = len(players)
     infected_players = 1
     healthy_players = len(players) - infected_players
     game_over = False  # true when winner is established
@@ -54,4 +50,13 @@ class Game:  # this is a game class
 
     def game_timer(self):
         self.time -= 1
+
+    def add_player(self, player, player_model):
+        self.players[player] = player_model
+
+    def remove_player(self, player):
+        del self.players[player]
+
+    def get_players(self):
+        return len(self.players)
 
