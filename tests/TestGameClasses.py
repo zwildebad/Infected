@@ -19,7 +19,7 @@ class TestUserClass(unittest.TestCase):
 
     def test_game(self):  # testing the game class prior to anything being done
         big_game = gameClasses.Game()
-        self.assertEqual(big_game.player_count, 0)
+        self.assertEqual(big_game.get_players(), 0)
         self.assertEqual(big_game.infected_players, 1)
         self.assertFalse(big_game.game_over)
 

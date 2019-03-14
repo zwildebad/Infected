@@ -4,6 +4,9 @@ class User:  # this is the healthy player class
     dead = False  # if user object has dead = True, create a new object of class infected for that user
     speed = 1
     game_id = 0
+    x = 0
+    y = 0
+    rotation = 0.0
 
     def is_infected(self):  # if user object was damaged, they are infected
         if self.health <= 0:

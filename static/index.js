@@ -1,42 +1,23 @@
-function initGame(){
-    var config = {
-        type: Phaser.AUTO,
-        width: window.innerWidth * .98,
-        height: window.innerHeight * .97,
-        scene: {
-            preload: preload,
-            create: create
-        }
-    };
-    var game = new Phaser.Game(config);
-    preload()
-    create()
-}
-function preload ()
-{
-    this.load.setBaseURL('http://labs.phaser.io');
-
-    this.load.image('background1', 'img/background1.png');
-    this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-    this.load.image('red', 'assets/particles/red.png');
-}
-function create ()
-{
-    this.add.image(400, 300, 'sky');
-
-    var particles = this.add.particles('red');
-
-    var emitter = particles.createEmitter({
-        speed: 100,
-        scale: { start: 1, end: 0 },
-        blendMode: 'ADD'
+$(document).ready(function(){
+    $("#play").click(function(){
+        $("#menu__buttons").css("display", "none");
+        $("#login_form").css("display", "grid");
+        $("#username").css("display", "block");
+        $("#password").css("display", "block");
+        $("#login").css("display", "block");
     });
-
-    var logo = this.physics.add.image(400, 100, 'logo');
-
-    logo.setVelocity(100, 200);
-    logo.setBounce(1, 1);
-    logo.setCollideWorldBounds(true);
-
-    emitter.startFollow(logo);
-}
+    $("#login").click(function(){
+        var toSend = {
+            "username": $("#username").value,
+            "new_user": $("#new_user").value,
+            "password": $("#password").value
+        };
+        $.ajax({
+            url: "http://127.0.0.1:5000",
+            data: JSON.stringify(toSend),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            async: false
+        });
+    })
+});

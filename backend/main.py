@@ -1,28 +1,24 @@
-# should these be methods?? The world may never know....
-# time limit for players to join before game starts
 from backend.databaseProcess import *
 from backend.gameClasses import *
 
 
-def game_login(game):  # logs player into game with id from database, adds player to player list
+def game_login(game, username, password):  # logs player into game if room and if credentials match
     if game.get_players() >= 50:
+        # TODO make a new game instance
         return False
-    elif game.get_players() < 50 and not game.game_start:  # TODO add user to database upon calling function
-        new_user_name = str(next_id())  # name of new user, which is just the next available id number
-        new_user_object = User()  # new User object for the new user
-        add_to_database()
-        game.add_player(new_user_name, new_user_object)
-        return True
-        # connect to server?
+    elif game.get_players() < 50 and not game.game_start:
+        successful = check_login(username, password)
+        if successful:
+            game.add_player(username, User())
+            return True
+        else:
+            print("Those credentials are incorrect!")
+            return False
 
 
-def game_logout(game, player_id):  # deletes player from game list
-    if game.get_players() == 0:
-        return False
-    else:
-        game.remove_player(player_id)  # delete player from games player dictionary
-        return True
-        # disconnect from server
+def game_logout(game, username):  # deletes player from game list
+    game.remove_player(username)
+    # TODO ??
 
 
 def is_winner(game):
@@ -35,3 +31,7 @@ def is_winner(game):
         for player in player_dict:
             winners.append(player)
         return winners
+
+
+def next_id(dict):
+    return len(dict) + 1
