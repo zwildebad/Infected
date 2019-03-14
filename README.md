@@ -1,11 +1,2 @@
 # Infected
-All code is contained under the server directory. To find backend files, html files, or static files (stylesheets and scripts):
-  > server/infected_mmo/backend
-  
-  > server/infected_mmo/templates
-  
-  > server/infected_mmo/static
-
-General code follows MVC pattern. Models are contained under server/infected_mmo/models.
-Controller is contained under server/infected_mmo/views.
-Views are contained under server/infected_mmo/templates.
+app.py is the main server file, managed by Flask. Backend contains processing files called by app.py, such as logging in, logging out, or taking damage. Templates contains static files such as html, css, and js. Tests contains a variety of tests for different backend functions and the server. A database test file can be found under the backend directory.
