@@ -6,8 +6,6 @@ from backend.main import *
 import json
 app = Flask('__Infected__')
 
-games = {}  # {game_id: game_object}
-
 
 @app.route("/")
 def main_menu():
@@ -25,7 +23,7 @@ def logout():
 
 @app.route("/login", methods=['POST'])
 def login():
-    print(games)
+    game = Game()
     username = request.form['username']
     password = request.form['password']
     brand_new = request.form['new_user'].lower()
@@ -34,20 +32,10 @@ def login():
             add_to_database(username, password)
         else:
             return render_template('index.html')
-    if len(games) != 0:
-        for i in range(1, next_id(games)):
-            game = games[i]
-            if game_login(game, username, password):
-                return render_template('game.html')
-            else:
-                return render_template('index.html')
+    # ABOVE THIS LINE ^^^ IS GOOD
+    # TODO below: Find a way to make game lobbies
+    if game_login(game, username, password):
+        return render_template('game.html')
     else:
-        new_game = Game()
-        new_game.id = str(next_id(games))
-        if game_login(new_game, username, password):
-            games[new_game.id] = new_game
-            return render_template('game.html')
-        else:
-            print("Those credentials are incorrect!")
-            return render_template('index.html')
+        return render_template('index.html')
 

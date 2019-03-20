@@ -60,6 +60,3 @@ class Game:  # this is a game class
     def remove_player(self, player):
         del self.players[player]
 
-    def get_players(self):
-        return len(self.players)
-

@@ -3,16 +3,16 @@ from backend.gameClasses import *
 
 
 def game_login(game, username, password):  # logs player into game if room and if credentials match
-    if game.get_players() >= 50:
+    if len(game.players) >= 50:
         # TODO make a new game instance
         return False
-    elif game.get_players() < 50 and not game.game_start:
+    elif len(game.players) < 50 and not game.game_start:
         successful = check_login(username, password)
         if successful:
             game.add_player(username, User())
             return True
         else:
-            print("Those credentials are incorrect!")
+            print("Those credentials are incorrect(game_login)!")
             return False
 
 

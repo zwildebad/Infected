@@ -19,9 +19,9 @@ function initGame(){
 function preload ()
 {
     this.load.image('background1', 'assets\\backgrounds\\background1.png');
-    this.load.image('human', 'assets\\sprites\\human.png');
-    this.load.image('zombie', 'assets\\sprites\\zombie.png');
-    this.load.image('exitButton', 'assets\\ui\\ExitButton.png');  //TODO onclick send ajax request to server with {"game_id": game_id}
+    this.load.image('human', 'templates \\ assets\\sprites\\human.png');
+    this.load.image('zombie', 'templates \\ assets\\sprites\\zombie.png');
+    this.load.image('exitButton', 'templates \\ assets\\ui\\ExitButton.png');  //TODO onclick send ajax request to server with {"game_id": game_id}
 }
 function create ()
 {
