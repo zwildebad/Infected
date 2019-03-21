@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask import render_template
 from flask import request
-from backend.gameClasses import *
+from flask import url_for
+from flask import redirect
 from backend.main import *
-import json
+from backend.gameClasses import Game
 app = Flask('__Infected__')
 
 
@@ -14,16 +15,13 @@ def main_menu():
 
 @app.route("/logout", methods=['POST'])
 def logout():
-    game_id = request.form['game_id']
-    game = games[game_id]
-    username = request.form['username']
-    game_logout(game, username)
-    return render_template('index.html')
+    # TODO: Fix this shit
+    return
 
 
 @app.route("/login", methods=['POST'])
 def login():
-    game = Game()
+    new_game = Game()
     username = request.form['username']
     password = request.form['password']
     brand_new = request.form['new_user'].lower()
@@ -34,8 +32,32 @@ def login():
             return render_template('index.html')
     # ABOVE THIS LINE ^^^ IS GOOD
     # TODO below: Find a way to make game lobbies
-    if game_login(game, username, password):
-        return render_template('game.html')
+    if game_login(new_game, username, password):
+        return redirect(url_for('game'))  # sends them to game
     else:
         return render_template('index.html')
 
+
+@app.route("/game")
+def game():
+    return render_template('game.html')
+
+
+@app.route('/templates/assets/backgrounds/background1')
+def b1():
+    return send_from_directory('templates', 'assets/backgrounds/background1.png')
+
+
+@app.route('/templates/assets/sprites/human')
+def h():
+    return send_from_directory('templates', 'assets/sprites/human.png')
+
+
+@app.route('/templates/assets/sprites/zombie')
+def z():
+    return send_from_directory('templates', 'assets/sprites/zombie.png')
+
+
+@app.route('/templates/assets/ui/ExitButton')
+def e():
+    return send_from_directory('templates', 'assets/ui/ExitButton.png')
