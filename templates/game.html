@@ -34,6 +34,8 @@
 
     var background;
 
+    var exitButton;
+
     function preload ()
     {
         this.load.setBaseURL('http://127.0.0.1:5000/templates');
@@ -48,14 +50,22 @@
     {
         background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background1');
         background.setDisplaySize(window.innerWidth, window.innerHeight);
+
         human = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'human');
+        human.angle = 270;
+
         zombie = this.add.sprite(window.innerWidth / 4, window.innerHeight / 2, 'zombie');
+        zombie.angle = 270;
+
         exitButton = this.add.sprite(60, 50, 'exitButton');
         exitButton.setDisplaySize(window.innerWidth / 16, window.innerHeight / 10);
-        human.angle = 270;
-        zombie.angle = 270;
         exitButton.inputEnabled = true;
-        exitButton.events.onInputDown.add(listener, this);
+        exitButton.addListener(onmousedown, listener);
+    }
+
+    function listener()
+    {
+        console.log("It worked!");
     }
 
 </script>
