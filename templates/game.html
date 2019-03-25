@@ -22,7 +22,8 @@
         height: window.innerHeight,
         scene: {
             preload: preload,
-            create: create
+            create: create,
+            update: update
         }
     };
 
@@ -35,6 +36,8 @@
     var background;
 
     var exitButton;
+
+    var controls = {};
 
     function preload ()
     {
@@ -51,21 +54,56 @@
         background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background1');
         background.setDisplaySize(window.innerWidth, window.innerHeight);
 
-        human = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'human');
-        human.angle = 270;
+        this.human = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'human');
+        this.human.angle = 270;
 
-        zombie = this.add.sprite(window.innerWidth / 4, window.innerHeight / 2, 'zombie');
-        zombie.angle = 270;
+        this.zombie = this.add.sprite(window.innerWidth / 4, window.innerHeight / 2, 'zombie');
+        this.zombie.angle = 270;
 
-        exitButton = this.add.sprite(60, 50, 'exitButton');
-        exitButton.setDisplaySize(window.innerWidth / 16, window.innerHeight / 10);
-        exitButton.inputEnabled = true;
-        exitButton.addListener(onmousedown, listener);
+        this.exitButton = this.add.sprite(60, 50, 'exitButton');
+        this.exitButton.setDisplaySize(window.innerWidth / 16, window.innerHeight / 10);
+        this.exitButton.setInteractive();
+        this.exitButton.on('pointerdown',() => exitMatch());
+        this.key_W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.key_A = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.key_S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.key_D = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.key_UP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        this.key_DOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        this.key_LEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        this.key_RIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
 
-    function listener()
-    {
-        console.log("It worked!");
+    function update(delta){
+        if(this.key_W.isDown){
+            this.human.y -= 10;
+        }
+        if(this.key_A.isDown){
+            this.human.x -= 10;
+        }
+        if(this.key_S.isDown){
+            this.human.y += 10;
+        }
+        if(this.key_D.isDown){
+            this.human.x += 10;
+        }
+        if(this.key_UP.isDown){
+            this.human.angle = 270
+        }
+        if(this.key_DOWN.isDown){
+            this.human.angle = 90
+        }
+        if(this.key_LEFT.isDown){
+            this.human.angle = 180
+        }
+        if(this.key_RIGHT.isDown){
+            this.human.angle = 0
+        }
+    }
+
+    function exitMatch(){
+        console.log("Logout triggered");
+        window.location.pathname = ''
     }
 
 </script>
