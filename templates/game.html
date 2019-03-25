@@ -29,16 +29,6 @@
 
     var game = new Phaser.Game(config);
 
-    var human;
-
-    var zombie;
-
-    var background;
-
-    var exitButton;
-
-    var controls = {};
-
     function preload ()
     {
         this.load.setBaseURL('http://127.0.0.1:5000/templates');
@@ -51,8 +41,8 @@
 
     function create ()
     {
-        background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background1');
-        background.setDisplaySize(window.innerWidth, window.innerHeight);
+        this.background = this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background1');
+        this.background.setDisplaySize(window.innerWidth, window.innerHeight);
 
         this.human = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'human');
         this.human.angle = 270;
