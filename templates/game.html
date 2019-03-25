@@ -7,7 +7,6 @@
     <title>Infected</title>
     <link href="static/game.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
-    <!--<script src="static/game.js"></script>-->
 </head>
 
 
@@ -60,7 +59,6 @@
         exitButton = this.add.sprite(60, 50, 'exitButton');
         exitButton.setDisplaySize(window.innerWidth / 16, window.innerHeight / 10);
         exitButton.inputEnabled = true;
-        exitButton.addListener(onmousedown, listener);
     }
 
     function listener()
