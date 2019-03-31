@@ -12,12 +12,11 @@ $(document).ready(function(){
             "new_user": $("#new_user").value,
             "password": $("#password").value
         };
-        $.ajax({
-            url: "http://127.0.0.1:5000",
-            data: JSON.stringify(toSend),
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            async: false
-        });
+        $.post(
+            "http://127.0.0.1:3000",
+            JSON.stringify(toSend),
+            function(){console.log("Connected")},
+            "json"
+        );
     })
 });

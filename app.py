@@ -3,8 +3,8 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from flask import redirect
-from backend.main import *
-from backend.gameClasses import Game
+from model.python.main import *
+from model.python.gameClasses import Game
 app = Flask('__Infected__')
 
 

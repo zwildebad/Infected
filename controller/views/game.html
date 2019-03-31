@@ -7,7 +7,10 @@
     <title>Infected</title>
     <link href="static/game.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
-    <!--<script src="static/game.js"></script>-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io('http://127.0.0.1:3000');
+    </script>
 </head>
 
 
@@ -31,12 +34,12 @@
 
     function preload ()
     {
-        this.load.setBaseURL('http://127.0.0.1:5000/templates');
+        this.load.setBaseURL('http://127.0.0.1:3000/game');
 
-        this.load.image('background1', 'assets\\backgrounds\\background1');
-        this.load.image('human', 'assets\\sprites\\human');
-        this.load.image('zombie', 'assets\\sprites\\zombie');
-        this.load.image('exitButton', 'assets\\ui\\ExitButton');  //TODO onclick send ajax request to server with {"game_id": game_id}
+        this.load.image('background1', 'background1.png');
+        this.load.image('human', 'human.png');
+        this.load.image('zombie', 'zombie.png');
+        this.load.image('exitButton', 'ExitButton.png');  //TODO onclick send ajax request to server with {"game_id": game_id}
     }
 
     function create ()

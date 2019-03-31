@@ -20,11 +20,14 @@ def check_login(name, pas):
     cur = conn.cursor()
     cmd = '''SELECT username, password FROM PlayerInfo WHERE username = ? AND password = ?'''
     result = cur.execute(cmd, (name, pas))
-    for row in result:
-        if row[0] == name and row[1] == pas:
-            return True
-        else:
-            return False
+    if result.rowcount != 0:
+        for row in result:
+            if row[0] == name and row[1] == pas:
+                return True
+            else:
+                return False
+    else:
+        return False
 
 
 def get_users():
